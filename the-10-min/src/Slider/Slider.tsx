@@ -17,8 +17,9 @@ import Animated, {
 } from "react-native-reanimated";
 import { ReText, onGestureEvent, withOffset } from "react-native-redash";
 
-import Knob, { KNOB_SIZE } from "./Knob";
 import { StyleGuide } from "../components";
+
+import Knob, { KNOB_SIZE } from "./Knob";
 
 const { width } = Dimensions.get("window");
 const SLIDER_WIDTH = width - 150;
@@ -82,7 +83,7 @@ export default () => {
     () =>
       cond(
         eq(state, State.END),
-        // eslint-disable-next-line no-console
+
         call([value], ([v]) => console.log({ v }))
       ),
     [state, value]

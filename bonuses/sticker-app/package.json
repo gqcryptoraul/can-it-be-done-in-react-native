@@ -9,7 +9,8 @@
     "web": "expo start --web",
     "eject": "expo eject",
     "tsc": "tsc --noEmit",
-    "lint": "eslint . --ext .ts,.tsx  --max-warnings 0"
+    "lint": "eslint . --ext .ts,.tsx  --max-warnings 0",
+    "watch-need-help": "echo 256 | sudo tee -a /proc/sys/fs/inotify/max_user_instances && echo 32768 | sudo tee -a /proc/sys/fs/inotify/max_queued_events && echo 65536 | sudo tee -a /proc/sys/fs/inotify/max_user_watches && watchman shutdown-server"
   },
   "dependencies": {
     "@shopify/react-native-skia": "^0.1.133",

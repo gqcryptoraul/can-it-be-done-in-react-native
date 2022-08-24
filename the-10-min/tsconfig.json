@@ -23,5 +23,8 @@
     "noFallthroughCasesInSwitch": true,
     "forceConsistentCasingInFileNames": true
   },
+  "include": [
+    "src/**/*"
+  ],
   "extends": "expo/tsconfig.base"
 }
