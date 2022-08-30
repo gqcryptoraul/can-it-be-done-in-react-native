@@ -2,6 +2,7 @@ import { Dimensions } from "react-native";
 import { Circle, Text } from "react-native-svg";
 import type { Vector } from "react-native-redash";
 import { PI, canvas2Polar, polar2Canvas } from "react-native-redash";
+import React from "react";
 
 const { width, height } = Dimensions.get("window");
 export const RADIUS = width * 0.4;

@@ -8,6 +8,7 @@ import {
 } from "@shopify/react-native-skia";
 import React from "react";
 import { Dimensions, View } from "react-native";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 import { HelloSticker, HelloStickerDimensions } from "./HelloSticker";
 import { LocationSticker, LocationStickerDimensions } from "./LocationSticker";
@@ -29,13 +30,13 @@ export const Stickers = () => {
     return null;
   }
   return (
-    <View>
+    <GestureHandlerRootView style={{ flex: 1 }}>
       <Canvas style={{ width, height }}>
         <Picture matrix={pictureMatrix} image={image} />
         <HelloSticker matrix={helloMatrix} />
         <LocationSticker font={font} matrix={locationMatrix} />
       </Canvas>
-      <GestureHandler matrix={pictureMatrix} dimensions={PictureDimensions} />
+
       <GestureHandler
         matrix={helloMatrix}
         dimensions={HelloStickerDimensions}
@@ -44,6 +45,6 @@ export const Stickers = () => {
         matrix={locationMatrix}
         dimensions={LocationStickerDimensions}
       />
-    </View>
+    </GestureHandlerRootView>
   );
 };

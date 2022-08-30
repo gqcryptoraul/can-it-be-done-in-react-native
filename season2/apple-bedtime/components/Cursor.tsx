@@ -1,11 +1,23 @@
 import * as React from "react";
 import { DangerZone, GestureHandler } from "expo";
 import { StyleSheet } from "react-native";
+
 import { atan2 } from "./Math";
 
 const { Animated } = DangerZone;
 const {
-  Value, event, block, cond, eq, set, add, sub, multiply, sin, cos, debug,
+  Value,
+  event,
+  block,
+  cond,
+  eq,
+  set,
+  add,
+  sub,
+  multiply,
+  sin,
+  cos,
+  debug,
 } = Animated;
 type Value = typeof Value;
 const { PanGestureHandler, State } = GestureHandler;
@@ -26,30 +38,25 @@ export default ({ radius, angle }: CursorProps) => {
   const translationX = new Value(0);
   const translationY = new Value(0);
   const state = new Value(State.UNDETERMINED);
-  const onGestureEvent = event(
-    [
-      {
-        nativeEvent: {
-          translationX,
-          translationY,
-          state,
-        },
+  const onGestureEvent = event([
+    {
+      nativeEvent: {
+        translationX,
+        translationY,
+        state,
       },
-    ],
-  );
+    },
+  ]);
   return (
     <>
       <Animated.Code>
-        {
-          () => block([
+        {() =>
+          block([
             cond(eq(state, State.ACTIVE), [
               set(x, add(xOffset, translationX)),
               set(y, add(yOffset, translationY)),
             ]),
-            cond(eq(state, State.END), [
-              set(xOffset, x),
-              set(yOffset, y),
-            ]),
+            cond(eq(state, State.END), [set(xOffset, x), set(yOffset, y)]),
             set(α, atan2(add(multiply(y, -1), radius), sub(x, radius))),
             set(angle, α),
             set(translateX, add(multiply(radius, cos(α)), radius)),
@@ -57,7 +64,10 @@ export default ({ radius, angle }: CursorProps) => {
           ])
         }
       </Animated.Code>
-      <PanGestureHandler onHandlerStateChange={onGestureEvent} {...{ onGestureEvent }}>
+      <PanGestureHandler
+        onHandlerStateChange={onGestureEvent}
+        {...{ onGestureEvent }}
+      >
         <Animated.View
           style={{
             ...StyleSheet.absoluteFillObject,
@@ -65,10 +75,7 @@ export default ({ radius, angle }: CursorProps) => {
             width: 50,
             height: 50,
             borderRadius: 25,
-            transform: [
-              { translateX },
-              { translateY },
-            ],
+            transform: [{ translateX }, { translateY }],
           }}
         />
       </PanGestureHandler>

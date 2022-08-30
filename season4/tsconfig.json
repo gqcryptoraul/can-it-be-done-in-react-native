@@ -25,7 +25,7 @@
     "strictBindCallApply": true,
     "strictPropertyInitialization": true,
     "noImplicitThis": true,
-    "alwaysStrict": true
+    "alwaysStrict": false
   },
   "extends": "expo/tsconfig.base"
 }

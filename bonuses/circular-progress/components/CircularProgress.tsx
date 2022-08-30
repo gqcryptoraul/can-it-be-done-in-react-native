@@ -1,11 +1,10 @@
+/* eslint-disable import/no-anonymous-default-export */
 import * as React from "react";
 import { Dimensions, StyleSheet } from "react-native";
-import Svg, {
-  Defs, LinearGradient, Stop, Circle,
-} from "react-native-svg";
-import Animated from "react-native-reanimated";
+import Svg, { Defs, LinearGradient, Stop, Circle } from "react-native-svg";
+import Animated, { interpolate } from "react-native-reanimated";
 
-const { interpolate, multiply } = Animated;
+const { multiply } = Animated;
 const { width } = Dimensions.get("window");
 const size = width - 32;
 const strokeWidth = 50;
@@ -21,10 +20,14 @@ interface CircularPogressProps {
 
 export default ({ progress }: CircularPogressProps) => {
   const circumference = r * 2 * PI;
-  const α = interpolate(progress, {
-    inputRange: [0, 1],
-    outputRange: [0, PI * 2],
-  });
+  const α = interpolate(
+    progress,
+    {
+      inputRange: [0, 1],
+      outputRange: [0, PI * 2],
+    },
+    "linear"
+  );
   const strokeDashoffset = multiply(α, r);
   return (
     <Svg width={size} height={size} style={styles.container}>
@@ -38,7 +41,10 @@ export default ({ progress }: CircularPogressProps) => {
         stroke="rgba(255, 255, 255, 0.2)"
         fill="none"
         {...{
-          strokeWidth, cx, cy, r,
+          strokeWidth,
+          cx,
+          cy,
+          r,
         }}
       />
       <AnimatedCircle
@@ -46,7 +52,11 @@ export default ({ progress }: CircularPogressProps) => {
         fill="none"
         strokeDasharray={`${circumference}, ${circumference}`}
         {...{
-          strokeDashoffset, strokeWidth, cx, cy, r,
+          strokeDashoffset,
+          strokeWidth,
+          cx,
+          cy,
+          r,
         }}
       />
     </Svg>

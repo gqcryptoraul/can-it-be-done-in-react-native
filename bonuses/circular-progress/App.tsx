@@ -1,7 +1,8 @@
+/* eslint-disable import/no-anonymous-default-export */
 import React from "react";
 import { StyleSheet, View } from "react-native";
 import Animated, { Easing } from "react-native-reanimated";
-import { runTiming } from "react-native-redash";
+import timing from "react-native-redash";
 
 import CircularProgress from "./components/CircularProgress2";
 
@@ -11,12 +12,12 @@ export default () => {
   const clock = new Clock();
   const config = {
     duration: 10 * 1000,
-    toValue: 1,
+    to: 1,
     easing: Easing.linear,
   };
   return (
     <View style={styles.container}>
-      <CircularProgress progress={runTiming(clock, 0, config)} />
+      <CircularProgress progress={timing(config, clock)} />
     </View>
   );
 };

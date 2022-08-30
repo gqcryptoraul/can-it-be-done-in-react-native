@@ -4,7 +4,6 @@ import { GestureDetector, Gesture } from "react-native-gesture-handler";
 import Animated, {
   useAnimatedStyle,
   useSharedValue,
-  withSpring,
 } from "react-native-reanimated";
 
 const { width, height } = Dimensions.get("window");
